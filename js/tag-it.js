@@ -25,7 +25,6 @@
 *   jQuery UI v1.8+
 */
 (function($) {
-
     $.widget('ui.tagit', {
         options: {
             allowDuplicates   : false,
@@ -35,6 +34,7 @@
             readOnly          : false,  // Disables editing.
             removeConfirmation: false,  // Require confirmation to remove tags.
             tagLimit          : null,   // Max number of tags allowed (null for unlimited).
+            maxlength         : null,   // Max length attribute value for created input tag
 
             // Used for autocomplete, unless you override `autocomplete.source`.
             availableTags     : [],
@@ -94,7 +94,6 @@
             onTagClicked        : null,
             onTagLimitExceeded  : null,
 
-
             // DEPRECATED:
             //
             // /!\ These event callbacks are deprecated and WILL BE REMOVED at some
@@ -134,6 +133,10 @@
 
             if (this.options.placeholderText) {
                 this.tagInput.attr('placeholder', this.options.placeholderText);
+            }
+
+            if (this.options.maxlength) {
+                this.tagInput.attr('maxlength', this.options.maxlength);
             }
 
             if (!this.options.autocomplete.source) {
